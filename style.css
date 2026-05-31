@@ -1,0 +1,251 @@
+/* ==========================================================================
+   1. DESAIN NAVIGASI ATAS & TOMBOL TAB (DESKTOP)
+   ========================================================================== */
+
+/* Tampilan Menu Atas di Desktop/Laptop (Default) */
+.nav-menu-desktop {
+    display: flex;
+    gap: 0.25rem; /* Setara space-x-1 */
+    overflow-x: auto;
+    width: auto;
+}
+
+/* Menyembunyikan scrollbar bawaan navigasi desktop */
+.nav-menu-desktop::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+.nav-menu-desktop,
+.scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Mengunci animasi transisi tombol tab */
+.tab-btn {
+    transition: all 0.2s ease-in-out;
+}
+
+
+/* ==========================================================================
+   2. STYLING HAMBURGER MENU & RESPONSIVE NAV (MAKSIMAL 767px)
+   ========================================================================== */
+
+/* Pengaturan Tombol Garis 3 (Hamburger) - Default sembunyi di PC */
+.hamburger-btn {
+    display: none; 
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 50;
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 9999px;
+    transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 767px) {
+    /* Munculkan tombol garis 3 di layar HP */
+    .hamburger-btn {
+        display: flex;
+    }
+
+    /* Ubah navbar desktop menjadi susunan dropdown vertikal ke bawah */
+    .nav-menu-desktop {
+        display: none; /* Sembunyi sebelum tombol diklik */
+        position: absolute;
+        top: 64px; /* Sesuai dengan tinggi header h-16 */
+        left: 0;
+        width: 100%;
+        background-color: #0f172a; /* Warna slate-900 */
+        flex-direction: column;
+        padding: 1rem; /* Setara p-4 */
+        border-top: 1px solid #1e293b; /* Warna border-slate-800 */
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        gap: 0.5rem; /* Setara gap-2 */
+        z-index: 40;
+    }
+
+    /* Class pemicu dari JavaScript saat menu aktif dibuka di HP */
+    .mobile-menu-open {
+        display: flex !important;
+    }
+
+    /* Animasi Tombol Garis 3 Menjadi Silang (X) */
+    .hamburger-active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger-active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+}
+
+
+/* ==========================================================================
+   3. OPTIMASI RESPONSIVE TABEL BARANG (PREVIEW VIEW DI HP)
+   ========================================================================== */
+
+/* Membungkus tabel agar bisa di-scroll ke kanan-kiri dengan mulus di HP */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Scroll smooth di HP Android & iOS */
+    margin-bottom: 20px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background-color: #ffffff;
+}
+
+/* Base style tabel laporan di layar aplikasi */
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-table th {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-weight: bold;
+    font-size: 11px;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+}
+
+.report-table td {
+    padding: 8px 10px;
+    border: 1px solid #e2e8f0;
+    font-size: 11px;
+    color: #334155;
+    vertical-align: middle;
+}
+
+.report-section-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    background: #e2e8f0;
+    padding: 6px 10px;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #0f172a;
+    border-left: 4px solid #3b82f6; /* Aksen penanda log biru */
+}
+
+/* Mengunci text kode agar tidak berantakan jika terlalu panjang di HP */
+.code-text {
+    font-size: 10px !important;
+    font-family: monospace;
+    word-break: break-all;
+}
+
+/* Penyesuaian padding & ukuran font khusus layar HP */
+@media (max-width: 767px) {
+    .report-table th, 
+    .report-table td {
+        padding: 6px 8px;
+        font-size: 10.5px;
+    }
+    .report-section-title {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+}
+
+
+/* ==========================================================================
+   4. LOGIKA CETAK BERKAS KERTAS A4 (PRINT VIEW)
+   ========================================================================== */
+
+@media print {
+    /* Pengaturan ukuran kertas fisik ke standar A4 Portrait */
+    @page {
+        size: A4 portrait;
+        margin: 15mm 15mm 20mm 15mm; /* Atas, Kanan, Bawah, Kiri */
+    }
+
+    /* Sembunyikan semua elemen aplikasi web di layar utama saat mencetak */
+    body * { 
+        visibility: hidden; 
+    }
+
+    /* Hanya tampilkan area berkas kertas A4 */
+    #printArea, #printArea * { 
+        visibility: visible; 
+    }
+    
+    #printArea { 
+        display: block !important;
+        position: absolute; 
+        left: 0; 
+        top: 0; 
+        width: 100%; 
+        background: transparent;
+        color: #000000;
+        font-family: Arial, Helvetica, sans-serif; /* Font bersih dan mudah dibaca */
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    /* Memaksa elemen dengan class .no-print benar-benar hilang dari kertas */
+    .no-print { 
+        display: none !important; 
+    }
+
+    /* Styling Otomatis Struktur Tabel Saat Dicetak */
+    #printArea table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 6px;
+        margin-bottom: 18px;
+        page-break-inside: avoid;
+    }
+
+    /* Desain Kepala Tabel (Header) yang Tegas */
+    #printArea th {
+        background-color: #f1f5f9 !important; /* Latar abu-abu terang */
+        color: #000000 !important;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 10px;
+        border: 1px solid #000000 !important; /* Garis hitam solid sekeliling header */
+        padding: 6px 6px;
+        text-align: left;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Desain Isi Baris Tabel */
+    #printArea td {
+        border: 1px solid #000000 !important; /* Garis border hitam tipis solid */
+        padding: 6px 6px;
+        vertical-align: middle;
+        font-size: 11px;
+        background-color: #ffffff !important;
+    }
+
+    /* Penyesuaian teks judul log heading */
+    #printArea h3 {
+        color: #000000 !important;
+        font-weight: bold;
+        font-size: 12px;
+        margin-top: 12px;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        border-left: none;
+        padding-left: 0;
+    }
+}
