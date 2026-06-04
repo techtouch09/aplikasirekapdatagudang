@@ -1,0 +1,522 @@
+/* ==========================================================================
+   1. DESAIN NAVIGASI ATAS & TOMBOL TAB (DESKTOP)
+   ========================================================================== */
+
+   .nav-menu-desktop {
+    display: flex;
+    gap: 0.25rem;
+    overflow-x: auto;
+    width: auto;
+}
+
+.nav-menu-desktop::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+.nav-menu-desktop,
+.scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.tab-btn {
+    transition: all 0.2s ease-in-out;
+}
+
+/* ==========================================================================
+   2. STYLING HAMBURGER MENU & RESPONSIVE NAV (MAKSIMAL 767px)
+   ========================================================================== */
+
+.hamburger-btn {
+    display: none; 
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 50;
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 9999px;
+    transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 767px) {
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .nav-menu-desktop {
+        display: none; 
+        position: absolute;
+        top: 64px; 
+        left: 0;
+        width: 100%;
+        background-color: #0f172a; 
+        flex-direction: column;
+        padding: 1rem; 
+        border-top: 1px solid #1e293b; 
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        gap: 0.5rem; 
+        z-index: 40;
+    }
+
+    .mobile-menu-open {
+        display: flex !important;
+    }
+
+    .hamburger-active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger-active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+}
+
+/* ==========================================================================
+   3. OPTIMASI RESPONSIVE TABEL BARANG (PREVIEW VIEW)
+   ========================================================================== */
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background-color: #ffffff;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-table th {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-weight: bold;
+    font-size: 11px;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+}
+
+.report-table td {
+    padding: 8px 10px;
+    border: 1px solid #e2e8f0;
+    font-size: 11px;
+    color: #334155;
+    vertical-align: middle;
+}
+
+/* Styling Khusus Stok Bagus */
+.stok-bagus-cell {
+    background-color: #eff6ff !important;
+    color: #1e40af !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+}
+
+.header-stok-bagus {
+    background-color: #dbeafe !important;
+    color: #1e3a8a !important;
+    text-align: center !important;
+}
+
+.report-section-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    background: #e2e8f0;
+    padding: 6px 10px;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #0f172a;
+    border-left: 4px solid #3b82f6;
+}
+
+.code-text {
+    font-size: 10px !important;
+    font-family: monospace;
+    word-break: break-all;
+}
+
+@media (max-width: 767px) {
+    .report-table th, 
+    .report-table td {
+        padding: 6px 8px;
+        font-size: 10.5px;
+    }
+}
+
+
+/* Box Filter */
+.bg-white.p-5.rounded-2xl.shadow-sm.border.border-slate-200{
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+/* Label */
+.bg-white label{
+    color:#475569;
+    font-size:.72rem;
+    letter-spacing:.08em;
+    margin-bottom:4px;
+}
+
+/* Semua Input */
+#searchKeyword,
+#searchStartDate,
+#searchEndDate{
+    height:46px;
+    border:1px solid #cbd5e1;
+    border-radius:14px;
+    background:#fff;
+    transition:.3s ease;
+    box-shadow:0 2px 8px rgba(0,0,0,.03);
+}
+
+/* Efek Fokus */
+#searchKeyword:focus,
+#searchStartDate:focus,
+#searchEndDate:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 4px rgba(59,130,246,.15);
+    transform:translateY(-1px);
+}
+
+/* Input Pencarian */
+#searchKeyword{
+    padding-left:42px !important;
+
+    /* Icon Search SVG */
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0a7 7 0 0114 0z'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-size:18px;
+    background-position:left 14px center;
+}
+
+/* Tanggal */
+#searchStartDate,
+#searchEndDate{
+    background-color:#f8fafc;
+}
+
+/* Tombol Reset */
+button[onclick="resetSearchFilter()"]{
+    height:46px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#e2e8f0,#cbd5e1);
+    border:1px solid #cbd5e1;
+    transition:.3s;
+    font-weight:600;
+}
+
+button[onclick="resetSearchFilter()"]:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 15px rgba(0,0,0,.1);
+    background:linear-gradient(135deg,#cbd5e1,#94a3b8);
+    color:white;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .bg-white.p-5.rounded-2xl.shadow-sm.border.border-slate-200{
+        padding:16px;
+        gap:12px;
+    }
+}
+
+
+/* ==========================================================================
+   3. OPTIMASI TABEL RESPONSIVE (TAMPILAN LAYAR)
+   ========================================================================== */
+
+   .table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    /* Memberikan sedikit breathing room di mobile */
+    padding: 0 5px; 
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; 
+    /* Menggunakan min-width agar tabel tidak menciut paksa di layar sempit */
+    min-width: 600px; 
+}
+
+.report-table th, 
+.report-table td {
+    padding: 8px 10px;
+    border: 1px solid #e2e8f0;
+    font-size: 11px;
+    text-align: center;
+    /* Mencegah kata panjang memecah layout */
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
+    /* Memastikan teks membungkus ke baris baru */
+    white-space: normal;
+}
+
+.report-table th {
+    background-color: #f8fafc;
+    color: #0f172a;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.report-table td {
+    color: #334155;
+    vertical-align: middle;
+}
+
+/* Membuat kolom No selalu di tengah */
+.report-table th:first-child, 
+.report-table td:first-child {
+    text-align: center !important;
+    width: 5% !important; /* Memastikan lebar kolom No tetap kecil */
+}
+
+/* ==========================================================================
+   PERBAIKAN LEBAR & ALIGNMENT KOLOM
+   ========================================================================== */
+
+/* Pengaturan umum lebar kolom */
+.col-no    { width: 5%; }
+.col-tgl   { width: 14%; }
+.col-kode  { width: 12%; }
+.col-nama  { width: 20%; }
+.col-stok  { width: 11%; }
+.col-qty   { width: 9%; }
+
+/* Pengaturan khusus kolom Keterangan/Kronologi */
+/* Dibuat lebih spesifik agar tidak terpotong dan rata kiri */
+.col-ket { 
+    width: 29% !important; 
+    text-align: left !important; 
+    padding-left: 12px !important;
+    white-space: normal !important; /* Memastikan teks membungkus ke bawah */
+    word-break: break-word !important; /* Mencegah teks meluap keluar sel */
+}
+
+.report-section-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    background: #e2e8f0;
+    padding: 8px 12px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #0f172a;
+    border-left: 4px solid #3b82f6;
+    display: block;
+}
+@media print {
+    /* 1. Sembunyikan elemen navigasi, tombol, dan filter (berikan class .no-print pada elemen tsb) */
+    .no-print, nav, .hamburger-btn, button, .filter-section, .export-buttons {
+        display: none !important;
+    }
+
+    /* 2. Pastikan area cetak dan isinya terlihat */
+    #printArea, #printArea * {
+        visibility: visible !important;
+    }
+
+    /* 3. Atur posisi printArea agar memenuhi kertas */
+    #printArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 4. Pastikan tabel tidak terpotong secara paksa */
+    .table-container {
+        overflow: visible !important;
+        display: block !important;
+    }
+}
+
+/* CSS ini aman karena dibungkus dalam @media print */
+/* Hanya akan aktif saat pengguna menekan tombol Print */
+
+@media print {
+    /* Sembunyikan semua elemen selain area cetak */
+    body * {
+        visibility: hidden;
+    }
+
+    /* Tampilkan hanya area cetak */
+    #printArea, #printArea * {
+        visibility: visible;
+    }
+
+    /* Posisikan di pojok kiri atas */
+    #printArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    /* Pastikan tabel tidak terpotong */
+    .table-responsive {
+        overflow: visible !important;
+    }
+}
+
+/* ==========================================================================
+   4. LOGIKA CETAK BERKAS KERTAS A4 (PRINT VIEW)
+   ========================================================================== */
+
+   @media print {
+    @page {
+        size: A4 portrait;
+        margin: 15mm 15mm 20mm 15mm;
+    }
+
+    body * { 
+        visibility: hidden; 
+    }
+
+    #printArea, #printArea * { 
+        visibility: visible; 
+    }
+    
+    #printArea { 
+        display: block !important;
+        position: absolute; 
+        left: 0; 
+        top: 0; 
+        width: 100%; 
+        background: transparent;
+        color: #000000;
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .no-print { 
+        display: none !important; 
+    }
+
+    #printArea table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 6px;
+        margin-bottom: 18px;
+        page-break-inside: avoid;
+    }
+
+    #printArea th {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 10px;
+        border: 1px solid #000000 !important;
+        padding: 6px 6px;
+        text-align: left;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    #printArea td {
+        border: 1px solid #000000 !important;
+        padding: 6px 6px;
+        vertical-align: middle;
+        font-size: 11px;
+        background-color: #ffffff !important;
+    }
+
+    /* Print Override untuk Stok Bagus */
+    #printArea .stok-bagus-cell {
+        background-color: #f8fafc !important;
+        color: #000000 !important;
+        border: 1px solid #000000 !important;
+        font-weight: bold;
+    }
+
+    #printArea h3 {
+        color: #000000 !important;
+        font-weight: bold;
+        font-size: 12px;
+        margin-top: 12px;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        border-left: none;
+        padding-left: 0;
+    }
+}
+
+@media print {
+    /* 1. Sembunyikan elemen UI yang tidak perlu dicetak */
+    body * { 
+        visibility: hidden !important; 
+    }
+    
+    #printArea, #printArea * { 
+        visibility: visible !important; 
+    }
+    
+    #printArea {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+    }
+
+    /* 2. Hilangkan scroll bar hanya saat cetak */
+    .table-container {
+        overflow: visible !important;
+        width: 100% !important;
+        display: block !important;
+    }
+
+    /* 3. Paksa tabel agar muat di kertas A4 */
+    .report-table {
+        width: 100% !important;
+        table-layout: fixed !important; 
+        border-collapse: collapse !important;
+    }
+
+    /* 4. Sesuaikan ukuran font khusus untuk cetak */
+    .report-table th, .report-table td {
+        font-size: 9px !important;
+        padding: 4px !important;
+        border: 1px solid #000 !important;
+        word-wrap: break-word !important;
+    }
+
+    /* 5. Sembunyikan tombol-tombol agar tidak ikut ter-print */
+    .no-print, button, .filter-section, .export-buttons { 
+        display: none !important; 
+    }
+    
+    /* 6. Pastikan judul bagian tidak terpotong halaman */
+    .report-section-title {
+        page-break-after: avoid;
+    }
+}
